@@ -1,4 +1,4 @@
-[English](./README.md) | [“ú–{Œê](./README.ja.md)
+[English](./README.md) | [æ—¥æœ¬èªž](./README.ja.md)
 
 # CWinServ (C++17 / UTF-16)
 
