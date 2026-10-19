@@ -35,3 +35,6 @@ Service installation changes system state: only test on a safe development machi
 - It omits application-specific `CNamedPipeTh`, `CWinError`, and `CEvntReg`: their implementations were not provided. Log via Event Log or add an injected logger after their APIs are examined. Installing an Event Log *source* is separate from writing events.
 - `GetModuleFileNameW` grows a buffer to handle long module paths; additional Windows service path restrictions still apply.
 - No Windows compile/runtime test was possible in this environment: build and exercise start/stop, boot-start, failure scenarios, and privilege restrictions in Visual Studio on Windows.
+
+## Disclaimer
+This library is a personal project and is still under active development and improvement. Please thoroughly test and validate it in your own environment before using it in production.
