@@ -22,3 +22,6 @@ x86/
 *.tmp
 *.log
 *.zip
+
+EventMessages.rc
+EventMessages.h
