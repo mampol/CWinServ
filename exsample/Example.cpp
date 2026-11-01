@@ -1,32 +1,67 @@
 // CWinServ Example only
 #include "../CWinServ.h"
+#include "../CEventLog/CEventLog.h"
+#include "../CEventLog/EventMessages.h"
+
 #include <Windows.h>
 #include <iostream>
 #include <string>
 
-#ifdef _DEBUG
-#pragma comment(lib, "../x64/Debug/CWinServ.lib")
-#else
-#pragma comment(lib, "../x64/Release/CWinServ.lib")
-#endif
+#define SERV_NAME       L"ExampleCWinServ"
 
 class ExampleService final : public WinServ::CWinServ {
+
+private:
+    WinServ::CEventLog m_eventLog;
+
 protected:
-    DWORD ServiceWorker() override {
-        while (!IsStopRequested()) {
-            DWORD wait = WaitForStop(1000);
-            if (wait == WAIT_OBJECT_0) break;
-            if (wait == WAIT_FAILED) return GetLastError();
-        }
+    bool PostInstallService() override
+    {
+        return WinServ::CEventLog::InstallSource(
+            SERV_NAME);
+    }
+
+    bool PreRunService() override
+    {
+        return m_eventLog.Open(SERV_NAME);
+    }
+
+    DWORD ServiceWorker() override
+    {
+        m_eventLog.Info(
+            MSG_GENERIC,
+            L"サービスを開始しました"
+        );
+
+        WaitForStop(INFINITE);
+
+        m_eventLog.Info(
+            MSG_GENERIC,
+            L"サービスを停止します"
+        );
+
         return ERROR_SUCCESS;
     }
+
+    bool PostRunService() override
+    {
+        m_eventLog.Close();
+        return true;
+    }
+
+    bool PostUninstallService() override
+    {
+        return WinServ::CEventLog::UninstallSource(
+            SERV_NAME);
+    }
+
 };
 
 int wmain(int argc, wchar_t** argv)
 {
     ExampleService service;
 
-    service.Setup(L"ExampleCWinServ",
+    service.Setup(SERV_NAME,
         L"Example CWinServ",
         L"Simple C++17 UTF-16 Windows service");
 

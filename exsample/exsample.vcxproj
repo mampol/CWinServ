@@ -125,7 +125,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\CEventLog\CEventLog.cpp" />
+    <ClCompile Include="..\CWinServ.cpp" />
     <ClCompile Include="Example.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CEventLog\CEventLog.h" />
+    <ClInclude Include="..\CEventLog\EventMessages.h" />
+    <ClInclude Include="..\CWinServ.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\CEventLog\EventMessages.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

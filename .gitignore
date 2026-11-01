@@ -17,10 +17,8 @@ x86/
 *.lib
 *.exp
 *.aps
+*.bin
 
 *.tmp
 *.log
 *.zip
-
-qrcodegen.cpp
-qrcodegen.hpp
