@@ -108,6 +108,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>mc.exe -h "$(SolutionDir)CEventLog" -r "$(SolutionDir)CEventLog" "$(SolutionDir)CEventLog\EventMessages.mc"
+
+if errorlevel 1 exit /b 1</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -123,6 +128,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>mc.exe -h "$(SolutionDir)CEventLog" -r "$(SolutionDir)CEventLog" "$(SolutionDir)CEventLog\EventMessages.mc"
+
+if errorlevel 1 exit /b 1</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\CEventLog\CEventLog.cpp" />
